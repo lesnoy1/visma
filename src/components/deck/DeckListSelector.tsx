@@ -67,6 +67,18 @@ const DeckListSelector = () => {
     [deckList, deckListError, deckListLoading]
   );
 
+  const placeholderEl = useMemo(
+    () =>
+      !deckListError &&
+      !deckListLoading &&
+      !deckList && (
+        <Typography sx={{ color: theme.palette.grey[600] }}>
+          {'Set decklist ID and click "GO"'}
+        </Typography>
+      ),
+    [deckList, deckListError, deckListLoading, theme.palette.grey]
+  );
+
   return (
     <Box sx={style.root}>
       <TextField
@@ -85,6 +97,7 @@ const DeckListSelector = () => {
       {loadingEl}
       {errorEl}
       {nameEl}
+      {placeholderEl}
     </Box>
   );
 };
